@@ -2,6 +2,8 @@
 // This script have the option to save current date and time to fields 
 // fix the format problems
 // fit the format for date-time
+// this also fix the 10(&another) hour time time zone problems
+// -----
 // set some variables
 id_record = zoho.crm.getRecordById("MyServerList",id_num);
 curent_temperature = id_record.get("Temperature");
@@ -14,12 +16,12 @@ other users alson expiriate problems
 	no solution 
 	so make pach
 	need add +10 hour --> now.addHour(10)
-	meir.e , 2024,0915
+	meir.e , 2024-09-15
 */
 // print some info
 info "id_num = " + id_num;
 info "now = " + now;
-// 
+// fix the 10(&another) hour time time zone problems
 now_plus_10 = now.addHour(10);
 info "now + 10 = " + now_plus_10;
 // addHour
