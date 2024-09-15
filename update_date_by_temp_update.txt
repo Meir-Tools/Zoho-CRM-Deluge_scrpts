@@ -1,0 +1,31 @@
+// Meir-Tools , 2024-09-14
+// This script have the option to save current date and time to fields 
+// fix the format problems
+// fit the format for date-time
+// set some variables
+id_record = zoho.crm.getRecordById("MyServerList",id_num);
+curent_temperature = id_record.get("Temperature");
+max_temperature = id_record.get("max_temperature");
+min_temperature = id_record.get("min_temperature");
+date_last_temp_update = id_record.get("date_last_temp_update");
+/* Problems
+other users alson expiriate problems
+	https://help.zoho.com/portal/en/community/topic/time-stamp-incorrect-time
+	no solution 
+	so make pach
+	need add +10 hour --> now.addHour(10)
+	meir.e , 2024,0915
+*/
+// print some info
+info "id_num = " + id_num;
+info "now = " + now;
+// 
+now_plus_10 = now.addHour(10);
+info "now + 10 = " + now_plus_10;
+// addHour
+//detect and update date , by temperature change 
+//cdatetime = now.toString("yyy-MM-dd") + "T" + now.toString("HH:mm:ss") + "+03:00"; //need fix 
+cdatetime = now_plus_10.toString("yyy-MM-dd") + "T" + now_plus_10.toString("HH:mm:ss") + "+03:00";
+// fix
+info cdatetime;
+info zoho.crm.updateRecord("MyServerList",id_num,{"date_last_temp_update":cdatetime});
